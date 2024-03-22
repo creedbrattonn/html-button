@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAHAHAHA</title>
+
+</head>
+<link rel="stylesheet" href="./styles.css" />
+<body>
+    
+    <div id="question">Is Hamaad dumb?</div>
+    <div id="button-container">
+        <button class="btn" id="yes" onclick="yesClicked()">Yes</button>
+        <button class="btn" id="no" onmouseover="moveButton()">No</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            var button = document.getElementById('no');
+            var maxX = window.innerWidth - button.offsetWidth;
+            var maxY = window.innerHeight - button.offsetHeight;
+            var newX = Math.floor(Math.random() * maxX);
+            var newY = Math.floor(Math.random() * maxY);
+            // Ensure button stays within the screen boundaries
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            button.style.left = newX + "px";
+            button.style.top = newY + "px";
+        }
+
+        function yesClicked() {
+            document.getElementById('question').innerHTML = "Hahaha, I know you're dumb!";
+            document.getElementById('button-container').innerHTML = ""; // Clear button container
+            
+            // Add play again button
+            var playAgainButton = document.createElement('button');
+            playAgainButton.textContent = 'Play Again';
+            playAgainButton.className = 'btn';
+            playAgainButton.onclick = function() {
+                location.reload(); // Reload the page to play again
+            };
+            document.getElementById('button-container').appendChild(playAgainButton);
+        }
+    </script>
+</body>
+</html>
